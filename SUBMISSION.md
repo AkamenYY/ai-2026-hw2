@@ -10,11 +10,11 @@
 State which AI tools you used and for what. Expected and fine; undisclosed use
 is not. If you used a model to help you draft a prompt, say which prompt.
 
-> I used Claude for the plumbing code in all three sublabs (the API calls,
-> JSON extraction, schema validation, table printing), for drafting the four
-> role prompts in Sublab Easy and the extraction rules in Sublab Hard, and for
+> I used Claude for the plumbing code in all three sublabs (the API calls, JSON
+> extraction, schema validation, table printing), for drafting the four role
+> prompts in Sublab Easy and the extraction rules in Sublab Hard, and for
 > drafting the written answers below, which I checked against my own runs and
-> edited. Every number and every quoted reply in this file comes from my runs.
+> edited. Every number and every quoted reply in this file is from my runs.
 
 ---
 
@@ -128,6 +128,80 @@ made of, and what you would put in code — not in the prompt — if a wrong
 > wanted more information. If a wrong decision were expensive I would evaluate
 > the rule in code and send disagreements to a human.
 
+---
+
+## Sublab Medium — memory you choose
+
+### Tokens per call
+
+Input tokens sent on each call. In run B, call 10 is the compression call
+itself; the twelve scripted turns are the same in both runs.
+
+| Call | A — never compressed | B — compressed at the `compress` turn |
+|---|---|---|
+| 1 | 731 | 731 |
+| 2 | 785 | 785 |
+| 3 | 846 | 838 |
+| 4 | 900 | 907 |
+| 5 | 949 | 970 |
+| 6 | 1015 | 1044 |
+| 7 | 1072 | 1125 |
+| 8 | 1147 | 1198 |
+| 9 | 1207 | 1270 |
+| 10 (compress in B) | 1269 | 862 |
+| 11 | 1315 | 946 |
+| 12 | — | 1014 |
+| **peak** | 1315 | 1270 |
+| **total for the run** | 11236 | 11690 |
+
+### Probes after the conversation
+
+| Probe | Tests | A retrieved? | A answer | B retrieved? | B answer |
+|---|---|---|---|---|---|
+| Q-1 identity | turn 1 | yes | "You are **Daniyar Qoshan**, applicant **A-202**." | yes | "You are **Daniyar Qoshan**, applicant **A-202**." |
+| Q-2 missing document | turn 5 | yes | "Your **ID card** is still missing. Your transcript is on file." | yes | "Your **ID card** is still missing from the file." |
+| Q-3 band and amount | turns 3-4 | yes | "Your recorded income band is **2**, corresponding to a grant amount of **150,000 KZT**." | yes | "Your record shows **income band 2**, which corresponds to **150,000 KZT**." |
+| Q-4 the constraint | turn 6 | yes | "You said you can come to the office **on Thursdays**, because you have lab all week otherwise." | yes | "You can come to the office on **Thursdays**." |
+| Q-5 the open question | turn 7 | yes | "You asked whether a **scanned letter from your employer** would count or whether you needed to provide the original." | yes (but wrong) | "You asked whether an **employer letter could replace the ID card**. It cannot." |
+| **retrieved** | | 5/5 | | 5/5 (4/5 in substance) | |
+
+Q-5 counts as retrieved because `expect_contains` looks for "letter" and
+"employer", and both words are there. The answer is not the question the
+applicant asked: in turn 7 he asked whether a *scan* would do or whether the
+*original* was needed. Run B answered a different question, and added a ruling
+("it cannot") that nobody in the conversation ever made.
+
+### The state my compression produced
+
+```json
+{
+  "applicant_id": "A-202",
+  "topic": "Study grant eligibility and required documents",
+  "facts": [
+    "The applicant's name is Daniyar Qoshan.",
+    "The applicant sent their transcript last week.",
+    "The applicant's family certificate states income band 2.",
+    "The applicant could not upload the ID card because the scanner at home broke.",
+    "The applicant's sister Aruzhan applied last year and is also on file."
+  ],
+  "decisions": [],
+  "constraints": [
+    "The applicant can come to the office only on Thursdays because they have laboratory work during the rest of the week.",
+    "The application requires the transcript and ID card; an employer letter does not replace the ID card."
+  ],
+  "open_questions": [
+    "Whether the grant decision will be made on the same day the ID card is submitted remains unconfirmed."
+  ],
+  "language": "English and Kazakh"
+}
+```
+
+An earlier run produced a summary that did not parse (`Expecting ',' delimiter`).
+The program reported it, kept the history and carried on, so that run simply
+behaved like run A. A retry and a JSON response format were added after that.
+
+### Written answers
+
 **1. What did compression buy?** Peak tokens both ways, probes retrieved both
 ways, and — if a probe was lost — which one and which turn it came from.
 
@@ -155,8 +229,7 @@ add and what you would drop to pay for it.
 > `decisions` came back empty every run, so what the office already told the
 > applicant is not carried forward. I would also separate what he *claimed*
 > from what the record *shows* — my `facts` mixes the two, and the policy
-> depends on that difference. To pay for it I would drop `topic` and
-> `language`.
+> depends on that difference. To pay for it I would drop `topic` and `language`.
 
 **4. When is compression the wrong choice?** Name a conversation where it would
 lose something that cannot be recovered, and say whether your program would
@@ -170,8 +243,73 @@ notice.
 > program did not notice and could not: it validates the shape, not the truth,
 > and the probe passed because "letter" and "employer" were present.
 
-**Winner, computed by my code:** story-01, Aziza Bekova, 4.4.
-Runner-up story-04 at 3.9, a gap of 0.5.
+---
+
+## Sublab Hard — stories in, CVs out, the best candidate by code
+
+### Part 1 — extraction
+
+All six parsed and validated on the first attempt.
+
+| Story | Parsed? | Valid? | Fields that came back `null` | Traps hit |
+|---|---|---|---|---|
+| story-01 | yes | yes | none | none — the clean story: GPA 3.8/4.0, 2 published, 8 months |
+| story-02 | yes | yes | `gpa_4_scale`, `gpa_original_scale` | **no GPA stated** — a distinction but no number, and no number was invented |
+| story-03 | yes | yes | none | **GPA on another scale** — 4.6/5.0 converted to 3.68, scale recorded as "5.0"; the paper under review was not counted |
+| story-04 | yes | yes | none | **a paper that is not published** — four listed, `published_peer_reviewed` = 1, three in `not_published` |
+| story-05 | yes | yes | none | Kazakh source; 1 published, the paper still being written was not counted |
+| story-06 | yes | yes | `graduation_year`, `gpa_4_scale`, `gpa_original_scale` | **contradicts itself twice** — GPA 3.2 vs 3.5, graduated-2024 vs graduating-2026; the poster was not counted |
+
+The four traps, for reference: no GPA stated · a GPA on another scale · a paper
+that is not published · a story that contradicts itself.
+
+Paste the extraction for **story-06**, the one that contradicts itself:
+
+```json
+{
+  "candidate_id": "story-06",
+  "full_name": "Nurzhan Abilov",
+  "degree": "BSc in Statistics",
+  "graduation_year": null,
+  "gpa_4_scale": null,
+  "gpa_original_scale": null,
+  "languages": ["Kazakh", "Russian", "English"],
+  "published_peer_reviewed": 1,
+  "not_published": [
+    "One poster at a local event — not a peer-reviewed paper"
+  ],
+  "experience_months": 40,
+  "ambiguities": [
+    "GPA is contradictory: 3.2 versus 3.5; no GPA scale is stated.",
+    "Graduation status and year are contradictory: the story says the candidate graduated in 2024 and is currently a final-year student graduating in 2026."
+  ],
+  "evidence": {
+    "full_name": "# Nurzhan Abilov",
+    "degree": "I graduated in 2024 with a BSc in Statistics.",
+    "languages": "Languages: Kazakh, Russian, English.",
+    "published_peer_reviewed": "one paper published, in a peer-reviewed proceedings, on survey weighting.",
+    "experience_months": "I have been at an insurance analytics team since February 2023, which is about forty months."
+  }
+}
+```
+
+### Part 2 — scores and the winner
+
+The model returned three 0–5 scores per candidate and nothing else. The
+weighted total (0.5 academic + 0.3 research + 0.2 experience) and the ordering
+were computed in my code.
+
+| Candidate | academic (0–5) | research (0–5) | experience (0–5) | weighted total (code) |
+|---|---|---|---|---|
+| story-01 | 5 | 5 | 2 | 4.4 |
+| story-02 | 3 | 3 | 5 | 3.4 |
+| story-03 | 4 | 3 | 3 | 3.5 |
+| story-04 | 4 | 3 | 5 | 3.9 |
+| story-05 | 5 | 3 | 1 | 3.6 |
+| story-06 | 2 | 3 | 5 | 2.9 |
+
+**Winner, computed by my code:** story-01, Aziza Bekova, 4.4. Runner-up
+story-04 at 3.9, a gap of 0.5.
 
 **The model's prose answer, asked separately ("who should win?"):**
 
@@ -183,23 +321,15 @@ Runner-up story-04 at 3.9, a gap of 0.5.
 > publications rather than counting work that is merely under review or still
 > in preparation. Her proposed project — developing her retrieval research into
 > a thesis — is a clear continuation of work she has already done, and she has
-> discussed it with potential supervisors. Her eight months of data-team
-> experience also provides useful practical evidence of technical maturity,
-> even though it was not research employment.
+> discussed it with potential supervisors.
 >
-> Aisha Nurlankyzy is a close contender, with a slightly higher GPA and
-> relevant data-quality experience, but she has only one published paper and no
-> submitted second paper. Lyazzat has strong preparation and substantial
-> internships, but only one completed publication and a less directly
-> comparable grading scale. Dias has the most employment experience, but his
-> research record and academic evidence are thinner. Tamerlan's application
-> shows promise, but two of his four listed publications are not yet submitted,
-> and he has not completed his degree. Nurzhan's inconsistent degree and GPA
-> information makes his application difficult to assess reliably.
->
-> Aziza therefore offers the clearest evidence that she is already capable of
-> producing research and the most convincing, well-defined plan for turning the
-> scholarship into a substantial thesis.
+> Aisha Nurlankyzy is a close contender, with a slightly higher GPA, but she has
+> only one published paper. Lyazzat has strong preparation but only one
+> completed publication and a less directly comparable grading scale. Dias has
+> the most employment experience, but his research record is thinner.
+> Tamerlan's application shows promise, but two of his four listed publications
+> are not yet submitted. Nurzhan's inconsistent degree and GPA information makes
+> his application difficult to assess reliably.
 
 ### Part 3 — written answers
 
@@ -207,53 +337,53 @@ Runner-up story-04 at 3.9, a gap of 0.5.
 story that forced it.
 
 > The rubric writes the contradiction rule about a value. story-06 contradicts
-> itself twice: GPA 3.2 then 3.5, and "I graduated in 2024" against "currently
-> a final-year student graduating in 2026". The second is not a number, so I
-> had to say in the prompt that the rule applies to every field. With that,
-> `graduation_year` came back null and both contradictions were recorded. I
-> also required a quote in `evidence` for every filled field.
+> itself twice: GPA 3.2 then 3.5, and "I graduated in 2024" against "currently a
+> final-year student graduating in 2026". The second is not a number, so I had
+> to say in the prompt that the rule applies to every field. With that,
+> `graduation_year` came back null and both contradictions were recorded. I also
+> required a quote in `evidence` for every filled field.
 
 **2. Where did the model guess, and where did your code have to decide?** One
 example of each, from your run.
 
 > The model guessed on story-03: the story gives 4.6/5.0 and refuses to convert
 > it, and the model returned 3.68. The arithmetic happens to be right, but
-> nothing in my pipeline checks it. My code decided the ranking — it applied
-> the rubric weights and sorted. The model was told not to total anything or
-> name a winner.
+> nothing in my pipeline checks it. My code decided the ranking — it applied the
+> rubric weights and sorted. The model was told not to total anything or name a
+> winner.
 
 **3. Did your prose ranking and your computed ranking agree?** Say which one
 you trust and why — and if they agreed, what you would need to see before
 trusting the prose one alone.
 
-> They agreed — both put Aziza Bekova first. I trust the computed one, because
-> I can show where each number came from. The prose answer praises her
-> "credible plan", which is not a rubric criterion, and weights nothing. Before
-> trusting prose alone I would want it to survive repeated runs and a reshuffle
-> of the six stories.
+> They agreed: both put Aziza Bekova first. I trust the computed one, because I
+> can show where each number came from. The prose answer praises her "credible
+> plan", which is not a rubric criterion, and weights nothing. Before trusting
+> prose alone I would want it to survive repeated runs and a reshuffle of the
+> six stories.
 
 **4. The rubric has no anchor for a contradicted field.** The stories say 3.2
 and then 3.5; the rubric defines a 0 and a 5 and nothing in between for this
 case. Say what you did and what the rule should be.
 
-> I set the field to null and recorded the contradiction. But the scores show
+> I set the field to null and recorded the contradiction. The scores then showed
 > the real problem: the rubric says a story with no GPA scores 0 on academic,
-> and the model gave story-06 a 2 and story-02 — also null — a 3. A null is
-> being read as "weak" rather than "absent", and differently each time. The
-> rule should treat a contradicted field as unverified and flag it for a human,
-> and it should be enforced in code: if `gpa_4_scale` is null, force academic
-> to 0 instead of hoping the model remembers.
+> and the model gave story-06 a 2 and story-02 — also null — a 3. A null is read
+> as "weak" rather than "absent", and differently each time. The rule should
+> treat a contradicted field as unverified and flag it for a human, and it
+> should be enforced in code: if `gpa_4_scale` is null, force academic to 0
+> instead of hoping the model remembers the counting rule.
 
 **5. How close were your top two candidates?** If they were within 0.05, say
 what you would tell the committee and what you would change in the extraction
 to make that call defensible.
 
-> Not close: 4.4 against 3.9, a gap of 0.5, and it comes from research, where
-> story-01 is the only candidate with two published papers. If they had been
-> within 0.05 I would tell the committee the scores cannot separate them. To
-> make such a call defensible I would score from the extracted record rather
-> than the story, derive academic and research from the counts in code, and run
-> the scoring several times to show the spread.
+> Not close: 4.4 against 3.9, and the gap comes from research, where story-01 is
+> the only candidate with two published papers. If they had been within 0.05 I
+> would tell the committee the scores cannot separate them. To make such a call
+> defensible I would score from the extracted record rather than the story,
+> derive academic and research from the counts in code, and run the scoring
+> several times to show the spread.
 
 ---
 
