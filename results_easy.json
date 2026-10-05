@@ -1,0 +1,626 @@
+{
+  "policy_officer": {
+    "E-01": {
+      "raw": "{\n  \"applicant_id\": \"A-201\",\n  \"found\": true,\n  \"decision\": \"granted\",\n  \"amount\": 250000,\n  \"missing_documents\": [],\n  \"reason\": \"GPA 3.4 meets the minimum of 2.67, income band 1 is allowed, and both required documents are on file.\"\n}",
+      "parsed": {
+        "applicant_id": "A-201",
+        "found": true,
+        "decision": "granted",
+        "amount": 250000,
+        "missing_documents": [],
+        "reason": "GPA 3.4 meets the minimum of 2.67, income band 1 is allowed, and both required documents are on file."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 933,
+      "output_tokens": 112
+    },
+    "E-02": {
+      "raw": "{\"applicant_id\":\"A-202\",\"found\":true,\"decision\":\"more_info\",\"amount\":0,\"missing_documents\":[\"id_card\"],\"reason\":\"The applicant meets the GPA and income-band requirements but the id card is missing from the record.\"}",
+      "parsed": {
+        "applicant_id": "A-202",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [
+          "id_card"
+        ],
+        "reason": "The applicant meets the GPA and income-band requirements but the id card is missing from the record."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 933,
+      "output_tokens": 92
+    },
+    "E-03": {
+      "raw": "{\"applicant_id\":\"A-203\",\"found\":true,\"decision\":\"refused\",\"amount\":0,\"missing_documents\":[],\"reason\":\"GPA 2.4 is below the minimum required GPA of 2.67.\"}",
+      "parsed": {
+        "applicant_id": "A-203",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "GPA 2.4 is below the minimum required GPA of 2.67."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 930,
+      "output_tokens": 84
+    },
+    "E-04": {
+      "raw": "{\n  \"applicant_id\": \"A-204\",\n  \"found\": true,\n  \"decision\": \"refused\",\n  \"amount\": 0,\n  \"missing_documents\": [],\n  \"reason\": \"GPA meets the minimum, but income band 3 is not allowed.\"\n}",
+      "parsed": {
+        "applicant_id": "A-204",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "GPA meets the minimum, but income band 3 is not allowed."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 927,
+      "output_tokens": 100
+    },
+    "E-05": {
+      "raw": "{\"applicant_id\":\"A-205\",\"found\":true,\"decision\":\"granted\",\"amount\":250000,\"missing_documents\":[],\"reason\":\"GPA 3.7 meets the minimum of 2.67, income band 1 is allowed, and both required documents are on file.\"}",
+      "parsed": {
+        "applicant_id": "A-205",
+        "found": true,
+        "decision": "granted",
+        "amount": 250000,
+        "missing_documents": [],
+        "reason": "GPA 3.7 meets the minimum of 2.67, income band 1 is allowed, and both required documents are on file."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 933,
+      "output_tokens": 94
+    },
+    "E-06": {
+      "raw": "{\"applicant_id\":\"A-206\",\"found\":true,\"decision\":\"granted\",\"amount\":150000,\"missing_documents\":[],\"reason\":\"GPA 2.7 meets the minimum of 2.67, income band 2 is allowed, and both required documents are on file.\"}",
+      "parsed": {
+        "applicant_id": "A-206",
+        "found": true,
+        "decision": "granted",
+        "amount": 150000,
+        "missing_documents": [],
+        "reason": "GPA 2.7 meets the minimum of 2.67, income band 2 is allowed, and both required documents are on file."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 924,
+      "output_tokens": 108
+    },
+    "E-07": {
+      "raw": "{\"applicant_id\":\"A-201\",\"found\":true,\"decision\":\"granted\",\"amount\":250000,\"missing_documents\":[],\"reason\":\"GPA 3.4 meets the minimum of 2.67, income band 1 is allowed, and both required documents are on file.\"}",
+      "parsed": {
+        "applicant_id": "A-201",
+        "found": true,
+        "decision": "granted",
+        "amount": 250000,
+        "missing_documents": [],
+        "reason": "GPA 3.4 meets the minimum of 2.67, income band 1 is allowed, and both required documents are on file."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 933,
+      "output_tokens": 101
+    },
+    "E-08": {
+      "raw": "{\"applicant_id\":\"A-999\",\"found\":false,\"decision\":\"not_found\",\"amount\":0,\"missing_documents\":[],\"reason\":\"Applicant A-999 is not on the record.\"}",
+      "parsed": {
+        "applicant_id": "A-999",
+        "found": false,
+        "decision": "not_found",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "Applicant A-999 is not on the record."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 928,
+      "output_tokens": 76
+    },
+    "E-09": {
+      "raw": "{\"applicant_id\":\"A-203\",\"found\":true,\"decision\":\"refused\",\"amount\":0,\"missing_documents\":[],\"reason\":\"GPA 2.4 is below the minimum of 2.67.\"}",
+      "parsed": {
+        "applicant_id": "A-203",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "GPA 2.4 is below the minimum of 2.67."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 926,
+      "output_tokens": 85
+    },
+    "E-10": {
+      "raw": "{\n  \"applicant_id\": \"A-202\",\n  \"found\": true,\n  \"decision\": \"more_info\",\n  \"amount\": 0,\n  \"missing_documents\": [\n    \"id_card\"\n  ],\n  \"reason\": \"The record shows GPA 2.9 and income band 2, which meet the policy requirements, but the id card is not on file. The claimed upload is not evidence.\"\n}",
+      "parsed": {
+        "applicant_id": "A-202",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [
+          "id_card"
+        ],
+        "reason": "The record shows GPA 2.9 and income band 2, which meet the policy requirements, but the id card is not on file. The claimed upload is not evidence."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 933,
+      "output_tokens": 136
+    }
+  },
+  "front_desk": {
+    "E-01": {
+      "raw": "{\"applicant_id\":\"A-201\",\"found\":true,\"decision\":\"granted\",\"amount\":250000,\"missing_documents\":[],\"reason\":\"The record shows a GPA of 3.4, income band 1, and both required documents on file, meeting all eligibility rules.\"}",
+      "parsed": {
+        "applicant_id": "A-201",
+        "found": true,
+        "decision": "granted",
+        "amount": 250000,
+        "missing_documents": [],
+        "reason": "The record shows a GPA of 3.4, income band 1, and both required documents on file, meeting all eligibility rules."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 95
+    },
+    "E-02": {
+      "raw": "{\"applicant_id\":\"A-202\",\"found\":true,\"decision\":\"more_info\",\"amount\":0,\"missing_documents\":[\"id_card\"],\"reason\":\"Please come back with the id_card so it can be added to the file.\"}",
+      "parsed": {
+        "applicant_id": "A-202",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [
+          "id_card"
+        ],
+        "reason": "Please come back with the id_card so it can be added to the file."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 117
+    },
+    "E-03": {
+      "raw": "{\n  \"applicant_id\": \"A-203\",\n  \"found\": true,\n  \"decision\": \"more_info\",\n  \"amount\": 0,\n  \"missing_documents\": [],\n  \"reason\": \"Please come back with an updated transcript showing a GPA of at least 2.67; the record currently shows a GPA of 2.4.\"\n}",
+      "parsed": {
+        "applicant_id": "A-203",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "Please come back with an updated transcript showing a GPA of at least 2.67; the record currently shows a GPA of 2.4."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 915,
+      "output_tokens": 223
+    },
+    "E-04": {
+      "raw": "{\"applicant_id\":\"A-204\",\"found\":true,\"decision\":\"more_info\",\"amount\":0,\"missing_documents\":[],\"reason\":\"The record shows income band 3, which is outside the eligible bands. Please come back with official documentation showing income band 1 or 2.\"}",
+      "parsed": {
+        "applicant_id": "A-204",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The record shows income band 3, which is outside the eligible bands. Please come back with official documentation showing income band 1 or 2."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 912,
+      "output_tokens": 223
+    },
+    "E-05": {
+      "raw": "{\"applicant_id\":\"A-205\",\"found\":true,\"decision\":\"granted\",\"amount\":250000,\"missing_documents\":[],\"reason\":\"The record shows GPA 3.7, income band 1, and both required documents on file. The eligible grant amount is 250,000 KZT.\"}",
+      "parsed": {
+        "applicant_id": "A-205",
+        "found": true,
+        "decision": "granted",
+        "amount": 250000,
+        "missing_documents": [],
+        "reason": "The record shows GPA 3.7, income band 1, and both required documents on file. The eligible grant amount is 250,000 KZT."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 117
+    },
+    "E-06": {
+      "raw": "{\n  \"applicant_id\": \"A-206\",\n  \"found\": true,\n  \"decision\": \"granted\",\n  \"amount\": 150000,\n  \"missing_documents\": [],\n  \"reason\": \"Sanzhar Beket meets the GPA requirement, has an allowed income band of 2, and has both required documents on file.\"\n}",
+      "parsed": {
+        "applicant_id": "A-206",
+        "found": true,
+        "decision": "granted",
+        "amount": 150000,
+        "missing_documents": [],
+        "reason": "Sanzhar Beket meets the GPA requirement, has an allowed income band of 2, and has both required documents on file."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 909,
+      "output_tokens": 116
+    },
+    "E-07": {
+      "raw": "{\"applicant_id\":\"A-201\",\"found\":true,\"decision\":\"granted\",\"amount\":250000,\"missing_documents\":[],\"reason\":\"Жазба бойынша GPA 3.4, табыс санаты 1 және transcript пен id_card құжаттары бар. Барлық талаптар орындалған, грант мөлшері 250000 KZT.\"}",
+      "parsed": {
+        "applicant_id": "A-201",
+        "found": true,
+        "decision": "granted",
+        "amount": 250000,
+        "missing_documents": [],
+        "reason": "Жазба бойынша GPA 3.4, табыс санаты 1 және transcript пен id_card құжаттары бар. Барлық талаптар орындалған, грант мөлшері 250000 KZT."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 131
+    },
+    "E-08": {
+      "raw": "{\"applicant_id\":\"A-999\",\"found\":false,\"decision\":\"more_info\",\"amount\":0,\"missing_documents\":[],\"reason\":\"Please return with an official record or application reference confirming your identity and applicant ID; A-999 is not present in the current records.\"}",
+      "parsed": {
+        "applicant_id": "A-999",
+        "found": false,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "Please return with an official record or application reference confirming your identity and applicant ID; A-999 is not present in the current records."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 913,
+      "output_tokens": 226
+    },
+    "E-09": {
+      "raw": "{\"applicant_id\":\"A-203\",\"found\":true,\"decision\":\"more_info\",\"amount\":0,\"missing_documents\":[],\"reason\":\"The record shows a GPA of 2.4, below the 2.67 minimum. Please come back with an updated transcript showing a GPA of at least 2.67.\"}",
+      "parsed": {
+        "applicant_id": "A-203",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The record shows a GPA of 2.4, below the 2.67 minimum. Please come back with an updated transcript showing a GPA of at least 2.67."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 911,
+      "output_tokens": 183
+    },
+    "E-10": {
+      "raw": "{\"applicant_id\":\"A-202\",\"found\":true,\"decision\":\"more_info\",\"amount\":0,\"missing_documents\":[\"id_card\"],\"reason\":\"Please come back with the id card on file so the application can be rechecked.\"}",
+      "parsed": {
+        "applicant_id": "A-202",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [
+          "id_card"
+        ],
+        "reason": "Please come back with the id card on file so the application can be rechecked."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 110
+    }
+  },
+  "auditor": {
+    "E-01": {
+      "raw": "{\"applicant_id\":\"A-201\",\"found\":true,\"decision\":\"more_info\",\"amount\":0,\"missing_documents\":[],\"reason\":\"The record identifies Aigerim Serik as A-201 and shows GPA 3.4, income band 1, and both required documents (transcript and id_card). These satisfy the Need-based study grant 2026 policy criteria, but a second reader is required before a final decision.\"}",
+      "parsed": {
+        "applicant_id": "A-201",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The record identifies Aigerim Serik as A-201 and shows GPA 3.4, income band 1, and both required documents (transcript and id_card). These satisfy the Need-based study grant 2026 policy criteria, but a second reader is required before a final decision."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 198
+    },
+    "E-02": {
+      "raw": "{\n  \"applicant_id\": \"A-202\",\n  \"found\": true,\n  \"decision\": \"refused\",\n  \"amount\": 0,\n  \"missing_documents\": [\n    \"id_card\"\n  ],\n  \"reason\": \"Policy requires both a transcript and an id_card on file. The record shows the transcript but not the id_card; GPA 2.9 and income band 2 meet the other policy criteria.\"\n}",
+      "parsed": {
+        "applicant_id": "A-202",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [
+          "id_card"
+        ],
+        "reason": "Policy requires both a transcript and an id_card on file. The record shows the transcript but not the id_card; GPA 2.9 and income band 2 meet the other policy criteria."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 194
+    },
+    "E-03": {
+      "raw": "{\"applicant_id\":\"A-203\",\"found\":true,\"decision\":\"refused\",\"amount\":0,\"missing_documents\":[],\"reason\":\"Refused under the Need-based study grant 2026 policy because the recorded GPA is 2.4, below the required minimum of 2.67. Income band 1 and both required documents are recorded.\"}",
+      "parsed": {
+        "applicant_id": "A-203",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "Refused under the Need-based study grant 2026 policy because the recorded GPA is 2.4, below the required minimum of 2.67. Income band 1 and both required documents are recorded."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 915,
+      "output_tokens": 151
+    },
+    "E-04": {
+      "raw": "{\n  \"applicant_id\": \"A-204\",\n  \"found\": true,\n  \"decision\": \"refused\",\n  \"amount\": 0,\n  \"missing_documents\": [],\n  \"reason\": \"Policy: Need-based study grant 2026 requires GPA at least 2.67, income band 1 or 2, and both transcript and id_card. The record shows GPA 3.1 and both required documents, but income band 3 is not allowed.\"\n}",
+      "parsed": {
+        "applicant_id": "A-204",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "Policy: Need-based study grant 2026 requires GPA at least 2.67, income band 1 or 2, and both transcript and id_card. The record shows GPA 3.1 and both required documents, but income band 3 is not allowed."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 912,
+      "output_tokens": 164
+    },
+    "E-05": {
+      "raw": "{\n  \"applicant_id\": \"A-205\",\n  \"found\": true,\n  \"decision\": \"more_info\",\n  \"amount\": 0,\n  \"missing_documents\": [],\n  \"reason\": \"Record A-205 shows GPA 3.7, income band 1, and both required documents. Under the Need-based study grant 2026 policy, these meet the listed criteria and correspond to 250000 KZT; a second reader is required before final decision.\"\n}",
+      "parsed": {
+        "applicant_id": "A-205",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "Record A-205 shows GPA 3.7, income band 1, and both required documents. Under the Need-based study grant 2026 policy, these meet the listed criteria and correspond to 250000 KZT; a second reader is required before final decision."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 249
+    },
+    "E-06": {
+      "raw": "{\n  \"applicant_id\": \"A-206\",\n  \"found\": true,\n  \"decision\": \"more_info\",\n  \"amount\": 0,\n  \"missing_documents\": [],\n  \"reason\": \"The record shows GPA 2.7 meets the Policy minimum of 2.67, income band 2 is allowed, and both required documents—transcript and id_card—are on file. A second-reader review is required under the audit instruction before a first-reading decision.\"\n}",
+      "parsed": {
+        "applicant_id": "A-206",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The record shows GPA 2.7 meets the Policy minimum of 2.67, income band 2 is allowed, and both required documents—transcript and id_card—are on file. A second-reader review is required under the audit instruction before a first-reading decision."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 909,
+      "output_tokens": 286
+    },
+    "E-07": {
+      "raw": "{\n  \"applicant_id\": \"A-201\",\n  \"found\": true,\n  \"decision\": \"more_info\",\n  \"amount\": 0,\n  \"missing_documents\": [],\n  \"reason\": \"The record shows GPA 3.4, income band 1, and both required documents. Under the Need-based study grant 2026 policy, the eligibility conditions appear satisfied, but a second reader is required before a decision is recorded.\"\n}",
+      "parsed": {
+        "applicant_id": "A-201",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The record shows GPA 3.4, income band 1, and both required documents. Under the Need-based study grant 2026 policy, the eligibility conditions appear satisfied, but a second reader is required before a decision is recorded."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 221
+    },
+    "E-08": {
+      "raw": "{\"applicant_id\":\"A-999\",\"found\":false,\"decision\":\"not_found\",\"amount\":0,\"missing_documents\":[],\"reason\":\"The applicant is not present in the RECORDS. Under the Need-based study grant 2026 policy, an applicant who is not on the record does not qualify; the enquiry claim was not treated as evidence.\"}",
+      "parsed": {
+        "applicant_id": "A-999",
+        "found": false,
+        "decision": "not_found",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The applicant is not present in the RECORDS. Under the Need-based study grant 2026 policy, an applicant who is not on the record does not qualify; the enquiry claim was not treated as evidence."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 913,
+      "output_tokens": 129
+    },
+    "E-09": {
+      "raw": "{\"applicant_id\":\"A-203\",\"found\":true,\"decision\":\"refused\",\"amount\":0,\"missing_documents\":[],\"reason\":\"The record identifies Madina Zhangeldi as A-203. Under the Need-based study grant 2026 policy, GPA must be at least 2.67; the record shows GPA 2.4. Income band 1 and both required documents are on file, but the GPA requirement is not met.\"}",
+      "parsed": {
+        "applicant_id": "A-203",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The record identifies Madina Zhangeldi as A-203. Under the Need-based study grant 2026 policy, GPA must be at least 2.67; the record shows GPA 2.4. Income band 1 and both required documents are on file, but the GPA requirement is not met."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 911,
+      "output_tokens": 155
+    },
+    "E-10": {
+      "raw": "{\n  \"applicant_id\": \"A-202\",\n  \"found\": true,\n  \"decision\": \"more_info\",\n  \"amount\": 0,\n  \"missing_documents\": [\n    \"id_card\"\n  ],\n  \"reason\": \"The record lists only a transcript for A-202; the policy requires both a transcript and an id_card. The message's upload claim is not evidence under the policy's record-only rule, so the id_card requires verification by a second reader.\"\n}",
+      "parsed": {
+        "applicant_id": "A-202",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [
+          "id_card"
+        ],
+        "reason": "The record lists only a transcript for A-202; the policy requires both a transcript and an id_card. The message's upload claim is not evidence under the policy's record-only rule, so the id_card requires verification by a second reader."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 918,
+      "output_tokens": 281
+    }
+  },
+  "bilingual_clerk": {
+    "E-01": {
+      "raw": "{\n  \"applicant_id\": \"A-201\",\n  \"found\": true,\n  \"decision\": \"granted\",\n  \"amount\": 250000,\n  \"missing_documents\": [],\n  \"reason\": \"You qualify because your GPA is 3.4, your income band is 1, and both required documents are on file.\"\n}",
+      "parsed": {
+        "applicant_id": "A-201",
+        "found": true,
+        "decision": "granted",
+        "amount": 250000,
+        "missing_documents": [],
+        "reason": "You qualify because your GPA is 3.4, your income band is 1, and both required documents are on file."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 943,
+      "output_tokens": 115
+    },
+    "E-02": {
+      "raw": "{\"applicant_id\":\"A-202\",\"found\":true,\"decision\":\"more_info\",\"amount\":0,\"missing_documents\":[\"id_card\"],\"reason\":\"The id card is missing from the record. Please provide it to complete the application.\"}",
+      "parsed": {
+        "applicant_id": "A-202",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [
+          "id_card"
+        ],
+        "reason": "The id card is missing from the record. Please provide it to complete the application."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 943,
+      "output_tokens": 94
+    },
+    "E-03": {
+      "raw": "{\"applicant_id\":\"A-203\",\"found\":true,\"decision\":\"refused\",\"amount\":0,\"missing_documents\":[],\"reason\":\"The application is refused because the GPA is 2.4, below the minimum requirement of 2.67.\"}",
+      "parsed": {
+        "applicant_id": "A-203",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The application is refused because the GPA is 2.4, below the minimum requirement of 2.67."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 940,
+      "output_tokens": 95
+    },
+    "E-04": {
+      "raw": "{\"applicant_id\":\"A-204\",\"found\":true,\"decision\":\"refused\",\"amount\":0,\"missing_documents\":[],\"reason\":\"The applicant meets the GPA and document requirements, but income band 3 is not eligible.\"}",
+      "parsed": {
+        "applicant_id": "A-204",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The applicant meets the GPA and document requirements, but income band 3 is not eligible."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 937,
+      "output_tokens": 86
+    },
+    "E-05": {
+      "raw": "{\"applicant_id\":\"A-205\",\"found\":true,\"decision\":\"granted\",\"amount\":250000,\"missing_documents\":[],\"reason\":\"You qualify based on the record, and the grant amount for income band 1 is 250,000 KZT.\"}",
+      "parsed": {
+        "applicant_id": "A-205",
+        "found": true,
+        "decision": "granted",
+        "amount": 250000,
+        "missing_documents": [],
+        "reason": "You qualify based on the record, and the grant amount for income band 1 is 250,000 KZT."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 943,
+      "output_tokens": 86
+    },
+    "E-06": {
+      "raw": "{\"applicant_id\":\"A-206\",\"found\":true,\"decision\":\"granted\",\"amount\":150000,\"missing_documents\":[],\"reason\":\"Sanzhar Beket meets the GPA and income-band requirements and has both required documents on file.\"}",
+      "parsed": {
+        "applicant_id": "A-206",
+        "found": true,
+        "decision": "granted",
+        "amount": 150000,
+        "missing_documents": [],
+        "reason": "Sanzhar Beket meets the GPA and income-band requirements and has both required documents on file."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 934,
+      "output_tokens": 92
+    },
+    "E-07": {
+      "raw": "{\"applicant_id\":\"A-201\",\"found\":true,\"decision\":\"granted\",\"amount\":250000,\"missing_documents\":[],\"reason\":\"Сіз грант талаптарына сай келесіз: GPA 3.4, табыс санаты 1 және қажетті құжаттардың екеуі де бар. Грант мөлшері — 250 000 теңге.\"}",
+      "parsed": {
+        "applicant_id": "A-201",
+        "found": true,
+        "decision": "granted",
+        "amount": 250000,
+        "missing_documents": [],
+        "reason": "Сіз грант талаптарына сай келесіз: GPA 3.4, табыс санаты 1 және қажетті құжаттардың екеуі де бар. Грант мөлшері — 250 000 теңге."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 943,
+      "output_tokens": 115
+    },
+    "E-08": {
+      "raw": "{\"applicant_id\":\"A-999\",\"found\":false,\"decision\":\"not_found\",\"amount\":0,\"missing_documents\":[],\"reason\":\"The applicant is not on the record.\"}",
+      "parsed": {
+        "applicant_id": "A-999",
+        "found": false,
+        "decision": "not_found",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "The applicant is not on the record."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 938,
+      "output_tokens": 80
+    },
+    "E-09": {
+      "raw": "{\n  \"applicant_id\": \"A-203\",\n  \"found\": true,\n  \"decision\": \"refused\",\n  \"amount\": 0,\n  \"missing_documents\": [],\n  \"reason\": \"You do not qualify because your GPA is 2.4, below the minimum required GPA of 2.67.\"\n}",
+      "parsed": {
+        "applicant_id": "A-203",
+        "found": true,
+        "decision": "refused",
+        "amount": 0,
+        "missing_documents": [],
+        "reason": "You do not qualify because your GPA is 2.4, below the minimum required GPA of 2.67."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 936,
+      "output_tokens": 110
+    },
+    "E-10": {
+      "raw": "{\n  \"applicant_id\": \"A-202\",\n  \"found\": true,\n  \"decision\": \"more_info\",\n  \"amount\": 0,\n  \"missing_documents\": [\n    \"id_card\"\n  ],\n  \"reason\": \"The record shows that the id card is missing. The claim that it was uploaded is not evidence, so the application cannot be granted until the id card is on file.\"\n}",
+      "parsed": {
+        "applicant_id": "A-202",
+        "found": true,
+        "decision": "more_info",
+        "amount": 0,
+        "missing_documents": [
+          "id_card"
+        ],
+        "reason": "The record shows that the id card is missing. The claim that it was uploaded is not evidence, so the application cannot be granted until the id card is on file."
+      },
+      "valid": true,
+      "error": null,
+      "input_tokens": 943,
+      "output_tokens": 138
+    }
+  }
+}

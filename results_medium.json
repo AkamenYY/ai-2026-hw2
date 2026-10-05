@@ -1,0 +1,243 @@
+{
+  "A": {
+    "calls": [
+      {
+        "kind": "turn",
+        "in": 731,
+        "out": 32,
+        "text": "Сәлеметсіз бе! My name is Daniyar Qoshan"
+      },
+      {
+        "kind": "turn",
+        "in": 785,
+        "out": 86,
+        "text": "I sent my transcript last week. Do I qua"
+      },
+      {
+        "kind": "turn",
+        "in": 846,
+        "out": 64,
+        "text": "My income band is 2 - my family's certif"
+      },
+      {
+        "kind": "turn",
+        "in": 900,
+        "out": 28,
+        "text": "So how much would that come to, if it go"
+      },
+      {
+        "kind": "turn",
+        "in": 949,
+        "out": 103,
+        "text": "I could not upload my id card because th"
+      },
+      {
+        "kind": "turn",
+        "in": 1015,
+        "out": 30,
+        "text": "I can only come to the office on Thursda"
+      },
+      {
+        "kind": "turn",
+        "in": 1072,
+        "out": 99,
+        "text": "Also, does a scanned letter from my empl"
+      },
+      {
+        "kind": "turn",
+        "in": 1147,
+        "out": 34,
+        "text": "Understood. And if I bring the id card o"
+      },
+      {
+        "kind": "turn",
+        "in": 1207,
+        "out": 114,
+        "text": "One more thing - my sister Aruzhan appli"
+      },
+      {
+        "kind": "turn",
+        "in": 1269,
+        "out": 66,
+        "text": "Sorry, where were we? What is still miss"
+      },
+      {
+        "kind": "turn",
+        "in": 1315,
+        "out": 22,
+        "text": "And what was the amount again?"
+      }
+    ],
+    "probes": [
+      {
+        "id": "Q-1",
+        "retrieved": true,
+        "answer": "You are **Daniyar Qoshan**, applicant **A-202**.",
+        "in": 1355,
+        "out": 20
+      },
+      {
+        "id": "Q-2",
+        "retrieved": true,
+        "answer": "Your **ID card** is still missing. Your transcript is on file.",
+        "in": 1353,
+        "out": 18
+      },
+      {
+        "id": "Q-3",
+        "retrieved": true,
+        "answer": "Your recorded income band is **2**, corresponding to a grant amount of **150,000 KZT**.",
+        "in": 1358,
+        "out": 25
+      },
+      {
+        "id": "Q-4",
+        "retrieved": true,
+        "answer": "You said you can come to the office **on Thursdays**, because you have lab all week otherwise.",
+        "in": 1356,
+        "out": 23
+      },
+      {
+        "id": "Q-5",
+        "retrieved": true,
+        "answer": "You asked whether a **scanned letter from your employer** would count or whether you needed to provide the original.",
+        "in": 1353,
+        "out": 26
+      }
+    ],
+    "state": null
+  },
+  "B": {
+    "calls": [
+      {
+        "kind": "turn",
+        "in": 731,
+        "out": 32,
+        "text": "Сәлеметсіз бе! My name is Daniyar Qoshan"
+      },
+      {
+        "kind": "turn",
+        "in": 785,
+        "out": 90,
+        "text": "I sent my transcript last week. Do I qua"
+      },
+      {
+        "kind": "turn",
+        "in": 838,
+        "out": 81,
+        "text": "My income band is 2 - my family's certif"
+      },
+      {
+        "kind": "turn",
+        "in": 907,
+        "out": 42,
+        "text": "So how much would that come to, if it go"
+      },
+      {
+        "kind": "turn",
+        "in": 970,
+        "out": 50,
+        "text": "I could not upload my id card because th"
+      },
+      {
+        "kind": "turn",
+        "in": 1044,
+        "out": 54,
+        "text": "I can only come to the office on Thursda"
+      },
+      {
+        "kind": "turn",
+        "in": 1125,
+        "out": 95,
+        "text": "Also, does a scanned letter from my empl"
+      },
+      {
+        "kind": "turn",
+        "in": 1198,
+        "out": 85,
+        "text": "Understood. And if I bring the id card o"
+      },
+      {
+        "kind": "turn",
+        "in": 1270,
+        "out": 194,
+        "text": "One more thing - my sister Aruzhan appli"
+      },
+      {
+        "kind": "compress",
+        "in": 862,
+        "out": 523,
+        "note": "ok"
+      },
+      {
+        "kind": "turn",
+        "in": 946,
+        "out": 54,
+        "text": "Sorry, where were we? What is still miss"
+      },
+      {
+        "kind": "turn",
+        "in": 1014,
+        "out": 21,
+        "text": "And what was the amount again?"
+      }
+    ],
+    "probes": [
+      {
+        "id": "Q-1",
+        "retrieved": true,
+        "answer": "You are **Daniyar Qoshan**, applicant **A-202**.",
+        "in": 1053,
+        "out": 20
+      },
+      {
+        "id": "Q-2",
+        "retrieved": true,
+        "answer": "Your **ID card** is still missing from the file.",
+        "in": 1051,
+        "out": 15
+      },
+      {
+        "id": "Q-3",
+        "retrieved": true,
+        "answer": "Your record shows **income band 2**, which corresponds to **150,000 KZT**.",
+        "in": 1056,
+        "out": 23
+      },
+      {
+        "id": "Q-4",
+        "retrieved": true,
+        "answer": "You can come to the office on **Thursdays**.",
+        "in": 1054,
+        "out": 16
+      },
+      {
+        "id": "Q-5",
+        "retrieved": true,
+        "answer": "You asked whether an **employer letter could replace the ID card**. It cannot.",
+        "in": 1051,
+        "out": 21
+      }
+    ],
+    "state": {
+      "applicant_id": "A-202",
+      "topic": "Study grant eligibility and required documents",
+      "facts": [
+        "The applicant's name is Daniyar Qoshan.",
+        "The applicant sent their transcript last week.",
+        "The applicant's family certificate states income band 2.",
+        "The applicant could not upload the ID card because the scanner at home broke.",
+        "The applicant's sister Aruzhan applied last year and is also on file."
+      ],
+      "decisions": [],
+      "constraints": [
+        "The applicant can come to the office only on Thursdays because they have laboratory work during the rest of the week.",
+        "The application requires the transcript and ID card; an employer letter does not replace the ID card."
+      ],
+      "open_questions": [
+        "Whether the grant decision will be made on the same day the ID card is submitted remains unconfirmed."
+      ],
+      "language": "English and Kazakh"
+    }
+  }
+}
